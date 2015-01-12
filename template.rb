@@ -19,10 +19,12 @@ gem_group :development do
   gem 'meta_request'
   gem 'pry-toys'
   gem 'bullet'
+  gem 'guard-livereload'
+  gem 'terminal-notifier-guard'
 end
 
 # remove old css
-remove_file "app/assets/stylesheets/application.css"
+remove_file 'app/assets/stylesheets/application.css'
 #
 # generate 'app/assets/stylesheets/application.scss'
 file 'app/assets/stylesheets/application.scss', <<-CODE
@@ -52,7 +54,13 @@ CODE
 route "root to: 'static_pages#index'"
 generate :controller, 'StaticPages index --no-test-framework --no-assets --no-helper'
 
+
 after_bundle do
+  # create guardfile
+  run 'guard init rspec'
+  run 'guard init livereload'
+
+  # inital git commit
   git :init
   git add: "."
   git commit: %Q{ -m 'Initial commit' }
