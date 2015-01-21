@@ -10,6 +10,7 @@ gem_group :development, :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'guard-rspec'
+  gem 'database_cleaner'
 end
 
 gem_group :development do
