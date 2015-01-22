@@ -61,6 +61,9 @@ after_bundle do
   run 'guard init rspec'
   run 'guard init livereload'
 
+  # create spec files
+  run 'rails generate rspec:install'
+
   # inital git commit
   git :init
   git add: "."
