@@ -1,4 +1,8 @@
-require 'pry'
+# add PWD to source paths
+def source_paths
+  [File.join(File.expand_path(File.dirname(__FILE__)), 'rails_root')] +
+    Array(super)
+end
 
 gem 'slim-rails'
 gem 'chronic'
@@ -11,6 +15,7 @@ gem_group :development, :test do
   gem 'capybara'
   gem 'guard-rspec'
   gem 'database_cleaner'
+  gem "spring-commands-rspec"
 end
 
 gem_group :development do
@@ -24,45 +29,29 @@ gem_group :development do
   gem 'terminal-notifier-guard'
 end
 
-# remove old css
-remove_file 'app/assets/stylesheets/application.css'
-#
-# generate 'app/assets/stylesheets/application.scss'
-file 'app/assets/stylesheets/application.scss', <<-CODE
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
-CODE
-
-# generate 'app/assets/stylesheets/application.scss'
-file 'app/assets/stoylesheets/framework_and_overrides.css.scss', <<-CODE
-// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
-@import "bootstrap-sprockets";
-@import 'bootstrap';
-@import 'bootstrap/theme';
-CODE
-
-route "root to: 'static_pages#index'"
-generate :controller, 'StaticPages index --no-test-framework --no-assets --no-helper'
-
 
 after_bundle do
+
+  # remove old css
+  remove_file 'app/assets/stylesheets/application.css'
+
+  route "root to: 'static_pages#index'"
+  generate :controller, 'StaticPages index --no-test-framework --no-assets --no-helper'
+
+  # create spec files
+  # run 'rails generate rspec:install'
+  generate 'rspec:install'
+
+  # copy application stubs
+  directory 'spec'
+  directory 'app'
+
+  # generate spring binstubs
+  run 'spring binstub --all'
+
   # create guardfile
   run 'guard init rspec'
   run 'guard init livereload'
-
-  # create spec files
-  run 'rails generate rspec:install'
 
   # inital git commit
   git :init
