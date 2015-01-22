@@ -41,6 +41,7 @@ after_bundle do
   # create spec files
   # run 'rails generate rspec:install'
   generate 'rspec:install'
+  remove_file 'spec/rails_helper.rb'
 
   # copy application stubs
   directory 'spec'
