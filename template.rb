@@ -15,7 +15,8 @@ gem_group :development, :test do
   gem 'capybara'
   gem 'guard-rspec'
   gem 'database_cleaner'
-  gem "spring-commands-rspec"
+  gem 'spring-commands-rspec'
+  gem 'shoulda'
 end
 
 gem_group :development do
