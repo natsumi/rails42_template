@@ -32,8 +32,9 @@ end
 
 after_bundle do
 
-  # remove old css
+  # remove standard genearted files
   remove_file 'app/assets/stylesheets/application.css'
+  remove_file 'app/view/layouts/application.html.erb'
 
   route "root to: 'static_pages#index'"
   generate :controller, 'StaticPages index --no-test-framework --no-assets --no-helper'
@@ -53,6 +54,8 @@ after_bundle do
   # create guardfile
   run 'guard init rspec'
   run 'guard init livereload'
+  # update guard file to run rspec using spring
+  gsub_file 'Guardfile', /^guard :rspec, cmd: "bundle exec rspec" do/, "guard :rspec, cmd: \"bin/rspec\" do"
 
   # inital git commit
   git :init
