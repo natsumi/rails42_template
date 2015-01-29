@@ -13,6 +13,7 @@ gem_group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'poltergeist'
   gem 'guard-rspec'
   gem 'database_cleaner'
   gem 'spring-commands-rspec'
