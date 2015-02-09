@@ -37,7 +37,7 @@ after_bundle do
 
   # remove standard genearted files
   remove_file 'app/assets/stylesheets/application.css'
-  remove_file 'app/view/layouts/application.html.erb'
+  remove_file 'app/views/layouts/application.html.erb'
 
   route "root to: 'static_pages#index'"
   generate :controller, 'StaticPages index --no-test-framework --no-assets --no-helper'
