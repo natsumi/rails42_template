@@ -14,7 +14,7 @@ gem_group :development, :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'poltergeist'
-  gem 'launcy'
+  gem 'launchy'
   gem 'guard-rspec'
   gem 'database_cleaner'
   gem 'spring-commands-rspec'
