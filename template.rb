@@ -12,6 +12,7 @@ gem 'autoprefixer-rails'
 gem_group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'faker'
   gem 'capybara'
   gem 'poltergeist'
   gem 'launchy'
@@ -32,11 +33,10 @@ gem_group :development do
   gem 'terminal-notifier-guard'
 end
 
-
 after_bundle do
-
   # remove standard genearted files
   remove_file 'app/assets/stylesheets/application.css'
+  remove_file 'app/assets/javascripts/application.js'
   remove_file 'app/views/layouts/application.html.erb'
 
   route "root to: 'static_pages#index'"
@@ -55,13 +55,13 @@ after_bundle do
   run 'spring binstub --all'
 
   # create guardfile
-  run 'guard init rspec'
-  run 'guard init livereload'
+  run 'bundle exec guard init rspec'
+  run 'bunlde exec guard init livereload'
   # update guard file to run rspec using spring
   gsub_file 'Guardfile', /^guard :rspec, cmd: "bundle exec rspec" do/, "guard :rspec, cmd: \"bin/rspec\" do"
 
   # inital git commit
   git :init
-  git add: "."
+  git add: '.'
   git commit: %Q{ -m 'Initial commit' }
 end
