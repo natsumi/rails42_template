@@ -1,7 +1,7 @@
 require 'database_cleaner'
 
 # Setup factory_girl for RSpec
-RSPec.configure do |config|
+RSpec.configure do |config|
   # So we don't have to preface factory_girl methods with FactoryGirl
   config.include FactoryGirl::Syntax::Methods
 
