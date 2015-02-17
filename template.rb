@@ -8,6 +8,8 @@ gem 'slim-rails'
 gem 'chronic'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
+gem 'rack-mini-profiler'
+gem 'flamegraph'
 
 gem_group :development, :test do
   gem 'rspec-rails'
@@ -39,6 +41,7 @@ after_bundle do
   remove_file 'app/assets/stylesheets/application.css'
   remove_file 'app/assets/javascripts/application.js'
   remove_file 'app/views/layouts/application.html.erb'
+  remove_file 'config/environments/development.rb'
 
   route "root to: 'static_pages#index'"
   generate :controller, 'StaticPages index --no-test-framework --no-assets --no-helper'
@@ -51,6 +54,7 @@ after_bundle do
   # copy application stubs
   directory 'spec'
   directory 'app'
+  directory 'config'
 
   # generate spring binstubs
   run 'spring binstub --all'
