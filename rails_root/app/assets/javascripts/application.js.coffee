@@ -11,7 +11,12 @@
 #  about supported directives.
 #
 #= require jquery
+#= require jquery.turbolinks
 #= require jquery_ujs
 #= require bootstrap-sprockets
-#= require turbolinks
+
+#= require base
+#= require_tree ./utilities
+#= require_tree ./elements
 #= require_tree .
+#= require turbolinks

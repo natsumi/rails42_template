@@ -10,6 +10,8 @@ gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'rack-mini-profiler'
 gem 'flamegraph'
+gem 'jquery-turbolinks'
+gem 'rails_script'
 
 gem_group :development, :test do
   gem 'rspec-rails'
