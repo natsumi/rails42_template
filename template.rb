@@ -36,6 +36,7 @@ gem_group :development do
   gem 'bullet'
   gem 'guard-livereload'
   gem 'terminal-notifier-guard'
+  gem 'quiet_assets'
 end
 
 after_bundle do
@@ -51,6 +52,7 @@ after_bundle do
   # create spec files
   # run 'rails generate rspec:install'
   generate 'rspec:install'
+  append_file '.rspec', '--format documentation'
   remove_file 'spec/rails_helper.rb'
 
   # copy application stubs
