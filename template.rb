@@ -37,6 +37,7 @@ gem_group :development do
   gem 'guard-livereload'
   gem 'terminal-notifier-guard'
   gem 'quiet_assets'
+  gem 'guard-ctags-bundler'
 end
 
 after_bundle do
@@ -64,6 +65,7 @@ after_bundle do
   run 'spring binstub --all'
 
   # create guardfile
+  run 'bundle exec guard init ctags-bundler'
   run 'bundle exec guard init rspec'
   run 'bunlde exec guard init livereload'
   # update guard file to run rspec using spring
