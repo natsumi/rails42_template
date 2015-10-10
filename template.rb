@@ -12,6 +12,9 @@ gem 'rack-mini-profiler'
 gem 'flamegraph'
 gem 'jquery-turbolinks'
 gem 'rails_script'
+gem 'sprockets'
+gem 'sprockets-es6', require: 'sprockets/es6'
+
 
 gem_group :development, :test do
   gem 'rspec-rails'
@@ -29,7 +32,6 @@ end
 
 gem_group :development do
   gem 'spirit_fingers'
-  gem 'coffee-rails-source-maps'
   gem 'better_errors'
   gem 'meta_request'
   gem 'pry-toys'
