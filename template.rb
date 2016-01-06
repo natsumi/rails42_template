@@ -69,7 +69,7 @@ after_bundle do
   # create guardfile
   run 'bundle exec guard init ctags-bundler'
   run 'bundle exec guard init rspec'
-  run 'bunlde exec guard init livereload'
+  run 'bundle exec guard init livereload'
   # update guard file to run rspec using spring
   gsub_file 'Guardfile', /^guard :rspec, cmd: "bundle exec rspec" do/, "guard :rspec, cmd: \"bin/rspec\" do"
 
